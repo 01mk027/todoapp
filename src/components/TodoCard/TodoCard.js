@@ -4,7 +4,7 @@ import { View, Text, TouchableWithoutFeedback } from 'react-native';
 
 const TodoCard = ({todo}) => {
     return(
-        <View style={styles.todo_container}>
+        <View style={todo.isActive ? styles.todo_container_active : styles.todo_container_passive}>
             <Text>{todo.content}</Text>
         </View>
     );

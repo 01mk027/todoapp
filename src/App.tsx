@@ -72,7 +72,33 @@ function App(): React.JSX.Element {
   }
   const renderItemF = ({item}) => {
     return (   
-      <TouchableWithoutFeedback key={item.id} onLongPress={() => {
+      <TouchableWithoutFeedback key={item.id} onPress={() => {
+        Alert.alert('WARNING', `Are you sure to set item's state as ${item.isActive ? "not done" : "done"}`, [
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel',
+          },
+          {text: 'OK', 
+            onPress: () => {
+              setTodos((todos) => {
+                let index = todos.indexOf(item);
+                todos[index].isActive = !todos[index].isActive;
+                return [...todos];
+              });            
+            }},
+        
+        ]);
+
+        /*
+        setTodos((todos) => {
+          let index = todos.indexOf(item);
+          todos[index].isActive = !todos[index].isActive;
+          return [...todos];
+        });
+        console.log(todos);
+        */
+      }} onLongPress={() => {
 
         /*
         ALERT STARTS
